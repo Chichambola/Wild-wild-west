@@ -5,27 +5,28 @@ using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private Player _player;
+    [SerializeField] private float _speed = 2f;
     
+    private int _idleSpeed = 0;
+    private int _moveSpeed = 1;
+    
+    private Player _player;
     private Coroutine _coroutine;
 
-    private void OnEnable()
-    {
-        StartMoving();
-    }
+    public int idleSpeed => _idleSpeed;
+    public int MoveSpeed => _moveSpeed;
 
+    public void SetPlayer(Player player)
+    {
+        _player = player;
+    }
+    
     public void StartMoving()
     {
         if(_coroutine != null)
             StopCoroutine(_coroutine);
 
         _coroutine = StartCoroutine(Moving());
-    }
-
-    public void SetPlayer(Player player)
-    {
-        _player = player;
     }
     
     private IEnumerator Moving()
