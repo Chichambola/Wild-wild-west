@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, IAttacker
         _rotatorHandler.IdleStarted -= StartRotating;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         _health.TakeDamage(damage);
     }

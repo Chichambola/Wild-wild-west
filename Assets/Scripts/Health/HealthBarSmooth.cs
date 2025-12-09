@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class HealthBarSmooth : HealthIndidcatorsBase
 {
     [SerializeField] private Slider _slider;
-    [SerializeField] private float _smoothSpeed;
+    [SerializeField] private float _delayTime = 0.2f;
 
     private Coroutine _coroutine;
 
@@ -24,22 +24,24 @@ public class HealthBarSmooth : HealthIndidcatorsBase
         
         base.OnEnable();
     }
-
+    
     protected override void ShowValue(float health, float maxHealth)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _coroutine = StartCoroutine(ChangeValueSmoothly(health));
+        _coroutine = StartCoroutine(ChangeValueSmoothly(health, maxHealth));
     }
 
-    private IEnumerator ChangeValueSmoothly(float health)
+    private IEnumerator ChangeValueSmoothly(float health, float maxHealth)
     {
+        var wait = new WaitForSeconds(_delayTime);
+        
         while (_slider.value != health) 
         {
-            _slider.value = Mathf.MoveTowards(_slider.value, health, _smoothSpeed);
+            _slider.value = Mathf.MoveTowards(_slider.value, health, maxHealth);
 
-            yield return null;
+            yield return wait;
         }
     }
 }

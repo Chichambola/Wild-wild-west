@@ -6,15 +6,10 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] private float _speed = 2f;
-    
-    private int _idleSpeed = 0;
-    private int _moveSpeed = 1;
+    [SerializeField] private float _rotationSpeed = 15f;
     
     private Player _player;
     private Coroutine _coroutine;
-
-    public int idleSpeed => _idleSpeed;
-    public int MoveSpeed => _moveSpeed;
 
     public void SetPlayer(Player player)
     {
@@ -28,6 +23,14 @@ public class EnemyMover : MonoBehaviour
 
         _coroutine = StartCoroutine(Moving());
     }
+
+    public void StopMoving()
+    {
+        if(_coroutine != null)
+            StopCoroutine(_coroutine);
+        
+        StopCoroutine(_coroutine);
+    }
     
     private IEnumerator Moving()
     {
@@ -38,7 +41,8 @@ public class EnemyMover : MonoBehaviour
             Vector3 playerDirection= UserUtils.GetDirection(playerPosition, transform.position);
             
             transform.position = Vector3.MoveTowards(transform.position, playerPosition ,_speed * Time.deltaTime);
-            transform.forward = Vector3.Lerp(transform.forward, playerDirection, _speed * Time.deltaTime);
+            
+            transform.forward = Vector3.Lerp(transform.forward, playerDirection, _rotationSpeed * Time.deltaTime);
             
             yield return null;
         }

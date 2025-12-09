@@ -651,7 +651,6 @@ GameObject:
   - component: {fileID: 5240387283801615014}
   - component: {fileID: 5876216376575894422}
   - component: {fileID: 3593176590038181525}
-  - component: {fileID: 999231735550629574}
   - component: {fileID: 8679035142633319663}
   m_Layer: 0
   m_Name: Thug1
@@ -727,6 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
+  _rotationSpeed: 15
 --- !u!114 &5876216376575894422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,74 +763,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8084173, y: 1.8198001, z: 1}
   m_Center: {x: -0.19749832, y: 0.9861194, z: 0}
---- !u!114 &999231735550629574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3121725706377220913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms:
-  - {fileID: 1751113634119298311}
-  - {fileID: 7724955418641885298}
-  - {fileID: 180053562419209863}
-  - {fileID: 5321032321458103126}
-  - {fileID: 5129730869108070383}
-  - {fileID: 7953497736299747201}
-  - {fileID: 7095201398849812392}
-  - {fileID: 6221687119711355196}
-  - {fileID: 5054753583350620995}
-  - {fileID: 1625784794904362497}
-  - {fileID: 7624727059177628305}
-  - {fileID: 2898774184758157402}
-  - {fileID: 3421239458517409132}
-  - {fileID: 5310702645282624012}
-  - {fileID: 4331099343915474522}
-  - {fileID: 1294833240968695557}
-  - {fileID: 2721616838008984802}
-  - {fileID: 3052251921534750494}
-  - {fileID: 2151989991195342372}
-  - {fileID: 1758665702694296460}
-  - {fileID: 2415289374453413540}
-  - {fileID: 9094233458890873681}
-  - {fileID: 4880593399673007989}
-  - {fileID: 3583152754313109687}
-  - {fileID: 5951074615204620840}
-  - {fileID: 2083755958113564738}
-  - {fileID: 541667633581403917}
-  - {fileID: 4033292311313513033}
-  - {fileID: 4185763573063979379}
-  - {fileID: 4584711405048822410}
-  - {fileID: 3074738330860921480}
-  - {fileID: 4120276701417661979}
-  - {fileID: 3135313796504229276}
-  - {fileID: 4941972533086028391}
-  - {fileID: 5775675699793278379}
-  - {fileID: 1383806591671475939}
-  - {fileID: 2145495174903036604}
-  - {fileID: 7638445793715461916}
-  - {fileID: 502399140621327079}
-  - {fileID: 8104127989961317023}
-  - {fileID: 6084983182447230661}
-  - {fileID: 7424741478566324539}
-  - {fileID: 2521253929203612226}
-  - {fileID: 8296811117389576908}
-  - {fileID: 4673074976587082126}
-  - {fileID: 8201696697985540380}
-  - {fileID: 9064862721731196666}
-  - {fileID: 1899480208390597304}
-  - {fileID: 7082431867774302425}
 --- !u!114 &8679035142633319663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1462,7 +1394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 5876216376575894422}
   _slider: {fileID: 8546631133274609536}
-  _smoothSpeed: 0.85
+  _smoothSpeed: 3
 --- !u!1 &4792821557277952455
 GameObject:
   m_ObjectHideFlags: 0

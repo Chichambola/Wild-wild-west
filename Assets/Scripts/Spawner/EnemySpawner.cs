@@ -7,12 +7,13 @@ using UnityEngine;
 public class EnemySpawner : Spawner<Enemy>
 {
     [SerializeField] private Player _targetPlayer;
+    [SerializeField] private MouseHandler _mouseHandler;
 
     public event Action<Enemy> ObjectTookDamage;
     
     private void OnEnable()
     {
-        GetObject();
+        _mouseHandler.SpawnEnemy += StartSpawning;
     }
 
     protected override void ActionOnGet(Enemy enemy)
@@ -29,9 +30,11 @@ public class EnemySpawner : Spawner<Enemy>
 
     protected override void ActionOnRelease(Enemy enemy)
     {
-        enemy.CanBeReleased -= Release;
+        enemy.ResetCharacteristics();
         
         base.ActionOnRelease(enemy);
+        
+        enemy.CanBeReleased -= Release;
     }
 
     private void TakeDamage(Enemy enemy)

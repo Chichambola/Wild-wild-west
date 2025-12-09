@@ -19,6 +19,7 @@ public class MouseHandler : MonoBehaviour
     private float _screenOffset = 2f;
 
     public event Action<Vector3> ShootButtonClicked;
+    public event Action SpawnEnemy;
 
     private void Awake()
     {
@@ -51,6 +52,11 @@ public class MouseHandler : MonoBehaviour
             ShootButtonClicked?.Invoke(_mouseWorldPosition);
             
             _inputs.shoot = false;
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            SpawnEnemy?.Invoke();
         }
     }
 }

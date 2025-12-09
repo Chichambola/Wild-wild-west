@@ -3,15 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(EnemyMover), typeof(AnimationController), typeof(Health))]
+[RequireComponent(typeof(Collider))]
 public class Enemy : MonoBehaviour, IBulletDetectable, IAttacker, IPoolable
 {
     [SerializeField] private EnemyMover _mover;
     [SerializeField] private AnimationController _animationController;
     [SerializeField] private Health _health;
     
+    private Collider _collider;
+    
     public event Action<Enemy> BulletDetected;
     public event Action<Enemy> CanBeReleased;
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider>();
+    }
 
     private void OnEnable()
     {
@@ -35,33 +45,33 @@ public class Enemy : MonoBehaviour, IBulletDetectable, IAttacker, IPoolable
 
     public void StartMoving()
     {
-        _animationController.PlayMove(_mover.MoveSpeed);
+        _animationController.PlayMove(_animationController.MoveSpeed);
         
         _mover.StartMoving();
     }
     
-    public void SetPlayer(Player player)
-    {
-        _mover.SetPlayer(player);
-    }
+    public void SetPlayer(Player player) => _mover.SetPlayer(player);
     
-    public void TakeDamage(float damage)
-    {
-        _health.TakeDamage(damage);
-    }
-
+    public void TakeDamage(int damage) => _health.TakeDamage(damage);
+    
+    
     private void Die()
     {
+       _collider.enabled = false;
+        
+        _mover.StopMoving();
+        
         _animationController.PlayDead();
     }
 
-    private void Release()
+    public void ResetCharacteristics()
     {
-        CanBeReleased?.Invoke(this);
+       _collider.enabled = true;
+        
+        _health.ResetHealth();
     }
     
-    private void ProcessTrigger()
-    {
-        BulletDetected?.Invoke(this);
-    }
+    private void Release() => CanBeReleased?.Invoke(this);
+    
+    private void ProcessTrigger() => BulletDetected?.Invoke(this);
 }
