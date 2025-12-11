@@ -32,9 +32,10 @@ public class EnemySpawner : Spawner<Enemy>
     {
         enemy.ResetCharacteristics();
         
-        base.ActionOnRelease(enemy);
-        
         enemy.CanBeReleased -= Release;
+        enemy.BulletDetected -= TakeDamage;
+        
+        base.ActionOnRelease(enemy);
     }
 
     private void TakeDamage(Enemy enemy)

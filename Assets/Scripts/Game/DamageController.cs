@@ -21,6 +21,6 @@ public class DamageController : MonoBehaviour
 
     private void ProcessDamage(Enemy enemy)
     {
-        enemy.TakeDamage(_player.GunDamage);
+        _player.DealDamage(enemy);
     }
 }

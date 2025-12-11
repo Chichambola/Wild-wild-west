@@ -28,8 +28,6 @@ public class EnemyMover : MonoBehaviour
     {
         if(_coroutine != null)
             StopCoroutine(_coroutine);
-        
-        StopCoroutine(_coroutine);
     }
     
     private IEnumerator Moving()

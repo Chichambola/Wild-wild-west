@@ -27,6 +27,14 @@ public class Bullet : MonoBehaviour, IPoolable
         StopCoroutine(_coroutine);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out IBulletDetectable _))
+        {
+            CollisionDetected?.Invoke(this);
+        }
+    }
+
     private IEnumerator Aging()
     {
         var wait = new WaitForSecondsRealtime(_ageDelay);
